@@ -19,6 +19,12 @@ import numpy as np
 import uuid
 import os
 from datetime import datetime
+from dotenv import load_dotenv
+
+# Load variables from .env file
+load_dotenv()
+google_api_key = os.getenv("GOOGLE_API_KEY")
+
 
 
 class OptimizedRAG:
@@ -597,7 +603,7 @@ def main():
     """)
     
     # Configuration
-    GEMINI_API_KEY = "AIzaSyDKIIVCT8i8wgNP-nZi3KVSDAAAAcvB-h0"  # Add your key
+    GEMINI_API_KEY = google_api_key  # Add your key
     PDF_PATHS = [
         "./pdfs/allchapters.pdf",  # Textbook - will use 300-word chunks
         "./pdfs/codebook15_llcp.pdf",  # Specialized - will use 500-word chunks
