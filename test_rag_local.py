@@ -407,7 +407,15 @@ def main():
     """)
     
     # Configuration
-    GEMINI_API_KEY = "REMOVED_KEY"  # Replace with your key
+    # Read Gemini/Google API key from environment to avoid committing secrets
+    import os
+    GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
+    if not GEMINI_API_KEY:
+        raise RuntimeError(
+            "Missing GEMINI_API_KEY environment variable.\n"
+            "Set it in your shell before running, e.g. in PowerShell:\n"
+            "$env:GEMINI_API_KEY='your_key_here'"
+        )
     PDF_PATHS = [
         "./pdfs/allchapters.pdf",
         "./pdfs/codebook15_llcp.pdf",
